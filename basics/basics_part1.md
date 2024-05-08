@@ -89,15 +89,33 @@ Division can be thought of the divisor. 16/5 = 3
 Q13. Give examples of methods that can account for division of numbers and how they relate to Division(/) or Modulo (%) operators:
 
 16.remainder(5)
-the remainder method computes and returns the remainder of an integer division operation
+```the remainder method computes and returns the remainder of an integer division operation```
 
 16.divmod(5)
-computes both the integer result of division and its modulo value.
+```computes both the integer result of division and its modulo value.```
 
 ***
 
-Q14. What does modulo operator return when a second operand is positive? and when the second operand is negative? Give example:
+Q14. What does 'modulo operator'return when a second operand is positive? and when the second operand is negative? Give example:
+```
+The modulo operator return a positive when the second operand is positive and negative when the second operand is negative.
+
+17%5 = 2
+17%(-5) = -3
+-17%(-5) = -2
+-17%(5) = 3
+
+```
 
 ***
 
-Q15. What does a remainder operator return when first operand is positive and when first operand is negative? Give examples.
+Q15. What does a 'remainder operator' return when first operand is positive and when first operand is negative? Give examples.
+```
+The remainder operator returns a positive when the first operand is positive and a negative when the first operand is negative.
+
+17.remainder(5) = 2
+17.remainder(-5) = 2
+(-17).remainder(5) = -2
+(-17).remainder(-5) = -2
+
+```
