@@ -30,6 +30,7 @@ When we merge Ruby code. " His name is #{name}"
 ***
 
 Q5. What is a symbol and how is it used?
+A symbol is an identifier. A symbol is like a string that serves a different purpose.
 
 
 ***
@@ -45,11 +46,12 @@ as nil
 ***
 
 Q8. What does the puts method do?
-prints out the string with and returns nothing.
+prints out the string and returns nothing.
 
 ***
 
 Q9. Give the most important property of nil.
+Nil is used to represent the abscence of content when used in an expression as a statement.
 
 ***
 
@@ -60,7 +62,7 @@ if nil
     puts "Hello, World!"
 end
 => nil
-
+The code contained within the `if` method is not evaluated as 'nil' is evaluated as false.
 ```
 
 ***
@@ -73,6 +75,7 @@ if 1
 end
 hello, world!
 => nil
+'1' is nothing, and therefore evaluates to false and is not run.
 ```
 
 ***
@@ -85,9 +88,15 @@ Division can be thought of the divisor. 16/5 = 3
 
 Q13. Give examples of methods that can account for division of numbers and how they relate to Division(/) or Modulo (%) operators:
 
+16.remainder(5)
+the remainder method computes and returns the remainder of an integer division operation
+
+16.divmod(5)
+computes both the integer result of division and its modulo value.
+
 ***
 
-Q14. What does modulo operator return when a second operand is positive? and when the second operant is negative? Give example:
+Q14. What does modulo operator return when a second operand is positive? and when the second operand is negative? Give example:
 
 ***
 
