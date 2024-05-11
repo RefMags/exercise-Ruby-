@@ -5,10 +5,21 @@ a = "Hello"
 b = a
 a = "Goodbye"
 
+puts a
+puts b
 ```
 ***
 ## MyAnswer
 ```
+On Line 4, local variable `a` is intialized with an object string with value `Hello`
+On Line 5, a new local variable `b` is initialized with object string `Hello` which is also referenced by variable `a`
+On Line 6, variable `a` is reassigned a new object string with value `Goodbye`
+
+On Line 8, the `puts` method is being called with argument `a` and it outputs `Goodbye`
+ because reassignement was made to the variable. The return is `nil`
+
+On Line 9, the `puts` method is called with argument `b` and it outputs `Hello`.
+  The return is `nil`
 
 ```
 
@@ -77,13 +88,3 @@ puts a
 ```
 
 ***
-
-
-```
-snack = 'french fries'
-num = 1
-
-num.times do |num|
-  puts "I'll love #{snack}, even when I'm #{num * 100}!"
-end
-```
