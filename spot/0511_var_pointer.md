@@ -79,10 +79,11 @@ puts a
 ***
 
 
-
+```
 snack = 'french fries'
 num = 1
 
 num.times do |num|
   puts "I'll love #{snack}, even when I'm #{num * 100}!"
 end
+```
