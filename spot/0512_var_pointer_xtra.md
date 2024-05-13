@@ -121,7 +121,7 @@ On line 103, within the block, a `puts` method is called by passing in a string
   the variable `counter` that was initialized outside the.
   This will result in shadowing.
 
-The inner variable `shadows` the outer one, making the outer varibale `inaccessible`
+The inner variable `shadows` the outer one, making the outer variable `inaccessible`
   within the inner scope.
 
 Even though the outer variable could otherwise be in scope, it becomes `unreachable`
