@@ -4,7 +4,7 @@
 
 Given an array collection of strings.
 Iterate through each element one by one.
-  - save the first element of the array as starting value.
+  - save the first element of the array as starting value of the string.
   - for each iteration, append the current value to the saved value.
 After iterating through the collection, return the saved saved string.
 
