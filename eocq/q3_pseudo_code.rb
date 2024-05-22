@@ -37,8 +37,6 @@ def every_other(intergers)
   integers.each do |integer|
     if
 
-    else
-
     end
   end
 end
