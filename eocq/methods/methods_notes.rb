@@ -1,8 +1,7 @@
-def say(words)
-  puts words
-end
+# def add_three(n)
+#   n + 3
+# end
 
-say("hello")
-say("hi")
-say("how are you")
-say("I'm fine")
+# p add_three(5).times { puts 'this should print 8 times'}
+
+p "hi there".length.to_s      # returns "8" - a String

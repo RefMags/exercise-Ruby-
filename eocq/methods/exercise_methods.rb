@@ -25,11 +25,11 @@ puts greeting("John")
 # Outputs : 2
 # => nil
 
-3. p name = "Joe" # `p` output its argument and output its argument
-# "Joe"
+3. p name = "Joe" # `p` output its argument and returns its argument
+# => "Joe"
 
 4. four = "four" # simple variable assignement. We are assigining "four" to variable "four"
-# "four"
+# => "four"
 
 5. print something = "nothing"
 # nothing
