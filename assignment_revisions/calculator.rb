@@ -10,6 +10,7 @@ Refactoring the calculator:
 2. How can we modify the `if` statement conditions.
 3. How can we validations(number and operator) to be entered.
 4. repeat the calculator for the user.
+  1. ask the user if they would like to perform another calculation
 6. make the program greet the user with there name.
 7. display the messages to confirm which operator has been choosen.
 8. change multi-line string for long prompts such as when we ask for `operator`.
@@ -22,7 +23,33 @@ def valid_number?(num)
   num.to_i != 0
 end
 
-prompt("Welcome to the Calculator!")
+def operation_to_message(op)
+  case op
+  when '1'
+    'Adding'
+  when '2'
+    'Subtracting'
+  when '3'
+    'Multiply'
+  when '4'
+    'Dividing'
+  end
+end
+
+prompt("Welcome to the Calculator! Please enter your name: ")
+
+name = ''
+
+loop do
+  name = Kernel.gets().chomp()
+
+  if name.empty?()
+    prompt("Please input correct name:")
+  else
+    break
+  end
+end
+prompt("Hi #{name}")
 
 loop do
   prompt("Please input your first number:")
@@ -49,8 +76,26 @@ loop do
     end
   end
 
-  prompt("What operation would you like to perform? 1) add 2) subtract 3) multiply 4. divide")
-  operator = Kernel.gets().chomp()
+  operator_prompt = <<-MSG
+  ("What operation would you like to perform?
+    1. add
+    2. subtract
+    3. multiply
+    4. divide"
+  MSG
+  prompt(operator_prompt)
+
+  operator = ''
+  loop do
+    operator = Kernel.gets().chomp()
+
+    if %(1 2 3 4).include?(operator)
+      break
+    else
+      prompt("must include 1, 2, 3 or 4")
+    end
+  end
+  prompt("#{operation_to_message(operator)} the two numbers.")
 
   result =  case operator
             when '1'
@@ -63,7 +108,7 @@ loop do
               number1.to_f() / number2.to_f()
             end
 
-  prompt("The result is #{result}")
+  prompt("#{operation_to_message(operator)} the two numbers is #{result}")
 
   prompt("Would you like to do another calculation?")
   answer = Kernel.gets().chomp()
