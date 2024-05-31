@@ -19,21 +19,23 @@ def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
-def valid_number?(num)
-  num.to_i != 0 || num == '0'
+def integer?(input)
+  input.to_s == input
 end
 
-def operation_to_message(op)
-  case op
-  when '1'
-    'Adding'
-  when '2'
-    'Subtracting'
-  when '3'
-    'Multiply'
-  when '4'
-    'Dividing'
-  end
+def float?(input)
+  input.to_f.to_s == input
+end
+
+OPERATION_MESSAGES = {
+  1 => 'Adding',
+  2 => 'Subtracting',
+  3 => 'Multiply',
+  4 => 'Dividing'
+}
+
+def operation_to_message(operation)
+  OPERATION_MESSAGES[operation]
 end
 
 prompt("Welcome to the Calculator! Please enter your name: ")
@@ -57,7 +59,7 @@ loop do
   loop do
     number1 = Kernel.gets().chomp()
 
-    if valid_number?(number1)
+    if integer?(number1)
       break
     else
       prompt("Hmmm...that is not a number. Please try again: ")
@@ -69,7 +71,7 @@ loop do
   loop do
     number2 = Kernel.gets().chomp()
 
-    if valid_number?(number2)
+    if integer?(number2)
       break
     else
       prompt("Hmmm...that is not a number. Please try again: ")
@@ -87,15 +89,14 @@ loop do
 
   operator = ''
   loop do
-    operator = Kernel.gets().chomp()
-
-    if %(1 2 3 4).include?(operator)
+    operator = Kernel.gets().chomp().to_i
+    if [1, 2, 3, 4].include?(operator)
       break
     else
       prompt("must include 1, 2, 3 or 4")
     end
   end
-  prompt("#{operation_to_message(operator)} the two numbers.")
+  puts("You selected: #{operation_to_message(operator)} the two numbers.")
 
   result =  case operator
             when '1'
@@ -105,10 +106,14 @@ loop do
             when '3'
               number1.to_i() * number2.to_i()
             else
-              number1.to_f() / number2.to_f()
+              if number2.to_f == 0.0
+                prompt("Cant divide by zero") # from here, code continues even though `0` is input.
+              else
+                number1.to_f / number2.to_f
+              end
             end
 
-  prompt("#{operation_to_message(operator)} the two numbers is #{result}")
+  prompt("#{operation_to_message(operator)} the two numbers is #{result}") # message does not include `operation_to_message` when its invoked.
 
   prompt("Would you like to do another calculation?")
   answer = Kernel.gets().chomp()
