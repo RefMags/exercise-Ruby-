@@ -27,6 +27,10 @@ def float?(input)
   input.to_f.to_s == input
 end
 
+def number?(input)
+  integer?(input) || float?(input)
+end
+
 OPERATION_MESSAGES = {
   1 => 'Adding',
   2 => 'Subtracting',
@@ -100,21 +104,20 @@ loop do
 
   result =  case operator
             when '1'
-              number1.to_i() + number2.to_i()
+              number1.to_s() + number2.to_s()
             when '2'
-              number1.to_i() - number2.to_i()
+              number1.to_s() - number2.to_s()
             when '3'
-              number1.to_i() * number2.to_i()
+              number1.to_s() * number2.to_s()
             else
               if number2.to_f == 0.0
-                prompt("Cant divide by zero") # from here, code continues even though `0` is input.
+                prompt("Cant divide by zero. Insert a number greater than 0")
               else
                 number1.to_f / number2.to_f
               end
             end
 
-  prompt("#{operation_to_message(operator)} the two numbers is #{result}") # message does not include `operation_to_message` when its invoked.
-
+  prompt("#{operation_to_message(operator)} the two numbers is #{result}")
   prompt("Would you like to do another calculation?")
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
