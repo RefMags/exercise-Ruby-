@@ -15,6 +15,7 @@ Refactoring the calculator:
 7. display the messages to confirm which operator has been choosen.
 8. change multi-line string for long prompts such as when we ask for `operator`.
 =end
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
