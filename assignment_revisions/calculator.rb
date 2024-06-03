@@ -101,6 +101,8 @@ loop do
             end
 
   prompt("#{operation_to_message(operator)} the two numbers is #{result}")
+
+  # Prompt user for another calculation
   prompt("Would you like to do another calculation?")
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
