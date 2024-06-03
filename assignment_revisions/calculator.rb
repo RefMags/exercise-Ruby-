@@ -1,5 +1,5 @@
 def prompt(message)
-  Kernel.puts("=> #{message}")
+  puts("=> #{message}")
 end
 
 def integer?(input)
@@ -22,7 +22,7 @@ OPERATION_MESSAGES = {
 }
 
 def operation_to_message(operation)
-  OPERATION_MESSAGES.fetch(operation, "Invalid Input")
+  OPERATION_MESSAGES.fetch(operation)
 end
 
 prompt("Welcome to the Calculator! Please enter your name: ")
