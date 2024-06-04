@@ -1,34 +1,43 @@
 require 'yaml'
-MESSAGES = YAML.load_file('calculator_messages.yml')
+messages = YAML.load_file('calculator_messages.yml')
 
-def prompt(message)
-  puts("=> #{message}")
+# preferred language setting
+user_language = :en
+
+# Accessing the operation messages and prompts
+
+operation_messages = messages[user_language.to_s]['operation_messages']
+prompts = messages[user_language.to_s]['prompts']
+
+# prompt method using loaded messages  start here
+def prompt(key, prompts)
+  puts("=> #{prompts[key]}")
 end
 
 def integer?(input)
-  input.to_s == input
+  input.to_i == input
 end
 
 def float?(input)
-  input.to_f.to_s == input
+  input.to_f.to_i == input
 end
 
 def number?(input)
   integer?(input) || float?(input)
 end
 
-OPERATION_MESSAGES = {
-  1 => 'Adding',
-  2 => 'Subtracting',
-  3 => 'Multiply',
-  4 => 'Dividing'
-}
+# OPERATION_MESSAGES = {
+#   1 => 'Adding',
+#   2 => 'Subtracting',
+#   3 => 'Multiply',
+#   4 => 'Dividing'
+# }
 
 def operation_to_message(operation)
   OPERATION_MESSAGES.fetch(operation)
 end
 
-prompt(MESSAGES['welcome'])
+prompt('welcome', prompts)
 
 name = ''
 
@@ -36,15 +45,15 @@ loop do
   name = Kernel.gets().chomp()
 
   if name.empty?()
-    prompt(MESSAGES['valid_name'])
+    prompt(messages['valid_name'])
   else
     break
   end
 end
-prompt(MESSAGES['welcome_message'] + name)
+prompt(messages['welcome_message'] + name)
 
 loop do
-  prompt(MESSAGES['insert_number1'])
+  prompt(messages['insert_number1'])
   number1 = ''
   loop do
     number1 = Kernel.gets().chomp()
@@ -52,11 +61,11 @@ loop do
     if integer?(number1)
       break
     else
-      prompt(MESSAGES['invalid_number_error:'])
+      prompt(messages['invalid_number_error:'])
     end
   end
 
-  prompt(MESSAGES['insert_number2'])
+  prompt(messages['insert_number2'])
   number2 = ''
   loop do
     number2 = Kernel.gets().chomp()
@@ -68,8 +77,8 @@ loop do
     end
   end
 
-  prompt(MESSAGES['op_prompt_msg'])
-  prompt(MESSAGES['op_selection'])
+  prompt(messages['op_prompt_msg'])
+  prompt(messages['op_selection'])
 
   operator = ''
   loop do
