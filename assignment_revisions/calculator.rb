@@ -1,21 +1,12 @@
 require 'yaml'
-messages = YAML.load_file('calculator_messages.yml')
+MESSAGES = YAML.load_file('calculator_messages.yml')
 
-# preferred language setting
-user_language = :en
-
-# Accessing the operation messages and prompts
-
-operation_messages = messages[user_language.to_s]['operation_messages']
-prompts = messages[user_language.to_s]['prompts']
-
-# prompt method using loaded messages  start here
-def prompt(key, prompts)
-  puts("=> #{prompts[key]}")
+def prompt(message)
+  puts("=> #{message}")
 end
 
 def integer?(input)
-  input.to_i == input
+  input.to_s == input
 end
 
 def float?(input)
@@ -26,34 +17,35 @@ def number?(input)
   integer?(input) || float?(input)
 end
 
-# OPERATION_MESSAGES = {
-#   1 => 'Adding',
-#   2 => 'Subtracting',
-#   3 => 'Multiply',
-#   4 => 'Dividing'
-# }
+OPERATION_MESSAGES = {
+  1 => 'Adding',
+  2 => 'Subtracting',
+  3 => 'Multiply',
+  4 => 'Dividing'
+}
 
 def operation_to_message(operation)
   OPERATION_MESSAGES.fetch(operation)
 end
 
-prompt('welcome', prompts)
+prompt(MESSAGES['welcome'])
 
+# Prompt user for their name
 name = ''
-
 loop do
   name = Kernel.gets().chomp()
 
   if name.empty?()
-    prompt(messages['valid_name'])
+    prompt(MESSAGES['valid_name'])
   else
     break
   end
 end
-prompt(messages['welcome_message'] + name)
+prompt(MESSAGES['welcome_message'] + name)
 
+# Main loop of calculator program
 loop do
-  prompt(messages['insert_number1'])
+  prompt(MESSAGES['insert_number1'])
   number1 = ''
   loop do
     number1 = Kernel.gets().chomp()
@@ -61,11 +53,12 @@ loop do
     if integer?(number1)
       break
     else
-      prompt(messages['invalid_number_error:'])
+      prompt(MESSAGES['invalid_number_error:'])
     end
   end
 
-  prompt(messages['insert_number2'])
+  # prompt(messages['insert_number2'])
+  prompt("Please input your second number:")
   number2 = ''
   loop do
     number2 = Kernel.gets().chomp()
@@ -77,8 +70,9 @@ loop do
     end
   end
 
-  prompt(messages['op_prompt_msg'])
-  prompt(messages['op_selection'])
+  # Ask user which operation they want to perform
+  prompt(MESSAGES['op_prompt_msg'])
+  prompt(MESSAGES['op_selection'])
 
   operator = ''
   loop do
@@ -90,7 +84,6 @@ loop do
     end
   end
   prompt(MESSAGES['op_sel_confirmation'] + operation_to_message(operator))
-  # prompt("You selected: #{operation_to_message(operator)} the two numbers.")
 
   result =  case operator
             when 1
@@ -100,10 +93,11 @@ loop do
             when 3
               number1.to_f * number2.to_f
             when 4
-              if number2.to_f != 0
-                number1.to_f / number2.to_f
-              else
+              if number2.to_f.zero?
                 prompt(MESSAGES['zero_div_error'])
+                promp(MESSAGES['greater_than_0_number'])
+                number2 = gets.chomp
+                number1.to_f / number2.to_f
               end
             end
   results = result.to_s
