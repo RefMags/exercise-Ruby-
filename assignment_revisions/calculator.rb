@@ -17,15 +17,9 @@ def number?(input)
   integer?(input) || float?(input)
 end
 
-OPERATION_MESSAGES = {
-  1 => 'Adding',
-  2 => 'Subtracting',
-  3 => 'Multiply',
-  4 => 'Dividing'
-}
-
 def operation_to_message(operation)
-  OPERATION_MESSAGES.fetch(operation)
+  # OPERATION_MESSAGES.fetch(operation)
+  MESSAGES['operation_messages'].fetch(operation)
 end
 
 prompt(MESSAGES['welcome'])

@@ -7,13 +7,14 @@ insert_number2: "Please input your second number:"
 op_prompt_msg: "What operation would you like to perform?"
 op_selection: "1. add  2. subtract 3. multiply 4. divide"
 invalid_operation: "must include 1, 2, 3 or 4"
+op_sel_confirmation: "You selected: "
 operation_messages:
   1: 'Adding'
   2: 'Subtracting'
   3: 'Multiply'
   4: 'Dividing'
-op_sel_confirmation: "You selected: "
 zero_div_error: "Error: Can't divide by zero"
+greater_than_0_number: "Please input number greater than 0:"
 result: " the two numbers is: "
 calculate_again?: "Would you like to do another calculation?"
 goodbye: "Thank you for using Calculator. See you next time!"
